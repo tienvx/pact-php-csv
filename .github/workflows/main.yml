@@ -30,7 +30,7 @@ jobs:
       run: php-cs-fixer fix --diff --dry-run
 
     - name: Run PHPStan
-      run: phpstan analyse src tests
+      run: phpstan analyse src tests example
 
     - name: Test & Generate Code Coverage
       run: ./vendor/bin/phpunit
