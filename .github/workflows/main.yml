@@ -25,6 +25,8 @@ jobs:
       uses: "ramsey/composer-install@v2"
       with:
         dependency-versions: ${{ matrix.dependency-versions }}
+      env:
+        COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
 
     - name: Run PHP CS Fixer
       run: php-cs-fixer fix --diff --dry-run
