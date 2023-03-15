@@ -35,7 +35,9 @@ class CsvHttpClientTest extends TestCase
         $config->setProvider('csvProvider');
         $config->setPactSpecificationVersion('4.0.0');
         $config->setPactDir(__DIR__ . '/pacts');
-        $config->setLogLevel(\getenv('PACT_LOGLEVEL'));
+        if ($logLevel = \getenv('PACT_LOGLEVEL')) {
+            $config->setLogLevel($logLevel);
+        }
         $builder = new CsvInteractionBuilder($config);
         $builder
             ->given('report.csv file exist')
