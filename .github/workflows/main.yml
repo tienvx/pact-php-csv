@@ -36,6 +36,8 @@ jobs:
 
     - name: Test & Generate Code Coverage
       run: ./vendor/bin/phpunit
+      env:
+        PACT_LOGLEVEL: ${{ vars.PACT_LOGLEVEL }}
 
     - name: Upload coverage results to Coveralls
       env:

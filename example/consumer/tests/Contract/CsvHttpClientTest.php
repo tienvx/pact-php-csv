@@ -3,11 +3,11 @@
 namespace App\Consumer\Tests\Contract;
 
 use App\Consumer\CsvHttpClient;
-use PhpPact\Consumer\InteractionBuilder;
 use PhpPact\Consumer\Model\ConsumerRequest;
 use PhpPact\Consumer\Model\ProviderResponse;
 use PhpPact\Standalone\MockService\MockServerConfig;
 use PHPUnit\Framework\TestCase;
+use Tienvx\PactPhpCsv\CsvInteractionBuilder;
 
 class CsvHttpClientTest extends TestCase
 {
@@ -22,25 +22,24 @@ class CsvHttpClientTest extends TestCase
         $response = new ProviderResponse();
         $response
             ->setStatus(200)
-            ->setBody(\json_encode([
+            ->setBody([
                 'csvHeaders' => false,
                 'column:1' => "matching(type,'Name')",
                 'column:2' => 'matching(number,100)',
                 'column:3' => "matching(datetime, 'yyyy-MM-dd','2000-01-01')"
-            ]))
-            ->addHeader('Content-Type', 'text/csv');
+            ])
+            ->setContentType('text/csv');
 
         $config = new MockServerConfig();
         $config->setConsumer('csvConsumer');
         $config->setProvider('csvProvider');
         $config->setPactSpecificationVersion('4.0.0');
         $config->setPactDir(__DIR__ . '/pacts');
-        $builder = new InteractionBuilder($config);
+        $config->setLogLevel(\getenv('PACT_LOGLEVEL'));
+        $builder = new CsvInteractionBuilder($config);
         $builder
-            ->usingPlugin('csv')
-            ->newInteraction()
             ->given('report.csv file exist')
-            ->uponReceiving('request for a report')
+            ->uponReceiving('request for a report.csv')
             ->with($request)
             ->willRespondWith($response);
 
