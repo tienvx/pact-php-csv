@@ -18,6 +18,8 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         tools: phpstan, phpcs, php-cs-fixer:3
         coverage: pcov
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout
       uses: actions/checkout@v2
