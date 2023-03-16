@@ -11,12 +11,9 @@
     "autoload-dev": {
         "psr-4": {
             "Tienvx\\PactPhpCsv\\Tests\\": "tests/",
-            "App\\Consumer\\": [
-                "example/consumer/src"
-            ],
-            "App\\Consumer\\Tests\\": [
-                "example/consumer/tests"
-            ]
+            "App\\Consumer\\": "example/consumer/src",
+            "App\\Consumer\\Tests\\": "example/consumer/tests",
+            "App\\Provider\\Tests\\": "example/provider/tests"
         }
     },
     "authors": [

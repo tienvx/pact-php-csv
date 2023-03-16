@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Contract;
+namespace App\Provider\Tests\Contract;
 
 use GuzzleHttp\Psr7\Uri;
 use PhpPact\Standalone\ProviderVerifier\Model\VerifierConfig;
