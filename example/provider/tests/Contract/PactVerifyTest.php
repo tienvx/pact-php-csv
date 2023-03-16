@@ -41,7 +41,7 @@ class PactVerifyTest extends TestCase
         ;
 
         $verifier = new Verifier($config);
-        $verifier->addDirectory(__DIR__ . '/../../../broker/pacts');
+        $verifier->addDirectory(__DIR__.'/../../../broker/pacts');
 
         $this->assertTrue($verifier->verify());
     }

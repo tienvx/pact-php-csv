@@ -19,7 +19,7 @@ class CsvInteractionBuilder extends InteractionBuilder
 
     private function setPluginDir(): void
     {
-        $pluginDir = __DIR__ . '/../bin/pact-plugins';
-        \putenv("PACT_PLUGIN_DIR=$pluginDir");
+        $pluginDir = __DIR__.'/../bin/pact-plugins';
+        \putenv("PACT_PLUGIN_DIR={$pluginDir}");
     }
 }

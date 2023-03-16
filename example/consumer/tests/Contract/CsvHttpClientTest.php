@@ -17,7 +17,8 @@ class CsvHttpClientTest extends TestCase
         $request
             ->setMethod('GET')
             ->setPath('/report.csv')
-            ->addHeader('Accept', 'text/csv');
+            ->addHeader('Accept', 'text/csv')
+        ;
 
         $response = new ProviderResponse();
         $response
@@ -26,15 +27,16 @@ class CsvHttpClientTest extends TestCase
                 'csvHeaders' => false,
                 'column:1' => "matching(type,'Name')",
                 'column:2' => 'matching(number,100)',
-                'column:3' => "matching(datetime, 'yyyy-MM-dd','2000-01-01')"
+                'column:3' => "matching(datetime, 'yyyy-MM-dd','2000-01-01')",
             ])
-            ->setContentType('text/csv');
+            ->setContentType('text/csv')
+        ;
 
         $config = new MockServerConfig();
         $config->setConsumer('csvConsumer');
         $config->setProvider('csvProvider');
         $config->setPactSpecificationVersion('4.0.0');
-        $config->setPactDir(__DIR__ . '/pacts');
+        $config->setPactDir(__DIR__.'/pacts');
         if ($logLevel = \getenv('PACT_LOGLEVEL')) {
             $config->setLogLevel($logLevel);
         }
@@ -43,7 +45,8 @@ class CsvHttpClientTest extends TestCase
             ->given('report.csv file exist')
             ->uponReceiving('request for a report.csv')
             ->with($request)
-            ->willRespondWith($response);
+            ->willRespondWith($response)
+        ;
 
         $service = new CsvHttpClient($config->getBaseUri());
         $columns = $service->getCsvFile();

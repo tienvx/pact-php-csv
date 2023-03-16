@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__.'/../../../vendor/autoload.php';
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -12,7 +12,8 @@ $app->post('/', function (Request $request, Response $response) {
     $response->getBody()->write('Hello world!');
 
     return $response
-        ->withHeader('Content-Type', 'text/plain');
+        ->withHeader('Content-Type', 'text/plain')
+    ;
 });
 
 $app->post('/change-state', function (Request $request, Response $response) {
