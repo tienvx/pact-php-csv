@@ -34,7 +34,8 @@
         "phpunit/phpunit": "^9.6",
         "symfony/http-client": "^5.4|^6.0",
         "symfony/process": "^5.4|^6.0",
-        "slim/slim": "^4.11"
+        "slim/slim": "^4.11",
+        "slim/psr7": "^1.6"
     },
     "repositories": [
         {
