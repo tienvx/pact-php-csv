@@ -4,12 +4,13 @@ on: [push, pull_request]
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
+        operating-system: [ ubuntu-latest, macos-latest, windows-latest ]
         php-versions: ['8.0', '8.1', '8.2']
         dependency-versions: ['lowest', 'highest']
-    name: PHP ${{ matrix.php-versions }} with ${{ matrix.dependency-versions }} versions of Composer dependencies
+    name: PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }} with ${{ matrix.dependency-versions }} versions of Composer dependencies
     steps:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
