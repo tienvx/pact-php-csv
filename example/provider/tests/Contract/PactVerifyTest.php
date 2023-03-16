@@ -14,10 +14,10 @@ class PactVerifyTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->process = new Process(['php', '-S', 'localhost:8000', '-t', __DIR__.'/../../public/']);
+        $this->process = new Process(['php', '-S', 'localhost:7000', '-t', __DIR__.'/../../public/']);
 
         $this->process->start();
-        $this->process->waitUntil(fn () => is_resource(fsockopen('localhost', 8000)));
+        $this->process->waitUntil(fn () => is_resource(fsockopen('localhost', 7000)));
     }
 
     protected function tearDown(): void
@@ -33,8 +33,8 @@ class PactVerifyTest extends TestCase
             ->setProviderVersion('1.0.0')
             ->setProviderBranch('main')
             ->setHost('localhost')
-            ->setPort(8000)
-            ->setStateChangeUrl(new Uri('http://localhost:8000/change-state'))
+            ->setPort(7000)
+            ->setStateChangeUrl(new Uri('http://localhost:7000/change-state'))
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
             ->setPublishResults(false)
