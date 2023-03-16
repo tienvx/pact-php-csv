@@ -4,12 +4,12 @@
   },
   "interactions": [
     {
-      "description": "request for a report",
+      "description": "request for a report.csv",
       "interactionMarkup": {
         "markup": "# Data\n\n|Name|100|2000-01-01|\n",
         "markupType": "COMMON_MARK"
       },
-      "key": "ad7b43bc4dd005f5",
+      "key": "a565e88863669aab",
       "pending": false,
       "pluginConfiguration": {
         "csv": {
@@ -23,7 +23,7 @@
       ],
       "request": {
         "headers": {
-          "Content-Type": [
+          "Accept": [
             "text/csv"
           ]
         },
@@ -72,8 +72,8 @@
               "combine": "AND",
               "matchers": [
                 {
-                  "match": "timestamp",
-                  "timestamp": "yyyy-MM-dd"
+                  "format": "yyyy-MM-dd",
+                  "match": "datetime"
                 }
               ]
             }
@@ -81,15 +81,13 @@
         },
         "status": 200
       },
-      "transport": "http",
       "type": "Synchronous/HTTP"
     }
   ],
   "metadata": {
     "pactRust": {
-      "ffi": "0.3.14",
-      "mockserver": "0.9.5",
-      "models": "1.0.0"
+      "ffi": "0.4.1",
+      "models": "1.0.4"
     },
     "pactSpecification": {
       "version": "4.0"

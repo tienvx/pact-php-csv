@@ -11,13 +11,21 @@ use Symfony\Component\Process\Process;
 class PactVerifyTest extends TestCase
 {
     private Process $process;
+    private int $port;
 
     protected function setUp(): void
     {
-        $this->process = new Process(['php', '-S', 'localhost:8000', '-t', __DIR__.'/../../public/']);
+        $this->process = new Process(['php', '-S', 'localhost:0', '-t', __DIR__.'/../../public/']);
 
         $this->process->start();
-        $this->process->waitUntil(fn () => is_resource(fsockopen('localhost', 8000)));
+        $this->process->waitUntil(function (string $type, string $output): bool {
+            $result = preg_match('/Development Server \(http:\/\/localhost:(\d+)\) started/', $output, $matches);
+            if ($result === 1) {
+                $this->port = (int)$matches[1];
+            }
+
+            return $result;
+        });
     }
 
     protected function tearDown(): void
@@ -33,15 +41,15 @@ class PactVerifyTest extends TestCase
             ->setProviderVersion('1.0.0')
             ->setProviderBranch('main')
             ->setHost('localhost')
-            ->setPort(8000)
-            ->setStateChangeUrl(new Uri('http://localhost:8000/change-state'))
+            ->setPort($this->port)
+            ->setStateChangeUrl(new Uri("http://localhost:{$this->port}/change-state"))
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
             ->setPublishResults(false)
         ;
 
         $verifier = new Verifier($config);
-        $verifier->addDirectory(__DIR__ . '/../../../broker/pacts');
+        $verifier->addDirectory(__DIR__.'/../../../broker/pacts');
 
         $this->assertTrue($verifier->verify());
     }
