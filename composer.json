@@ -47,6 +47,12 @@
             "url": "https://github.com/tienvx/pact-php-plugin.git"
         }
     ],
+    "scripts": {
+        "test": [
+            "php -r \"array_map('unlink', glob('./example/consumer/tests/Contract/pacts/*.json'));\"",
+            "phpunit"
+        ]
+    },
     "extra": {
         "downloads": {
             "pact-csv-plugin-metadata": {

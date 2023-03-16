@@ -36,7 +36,7 @@ jobs:
       run: phpstan analyse src tests example
 
     - name: Test & Generate Code Coverage
-      run: ./vendor/bin/phpunit
+      run: composer test
       env:
         PACT_LOGLEVEL: ${{ vars.PACT_LOGLEVEL }}
 
