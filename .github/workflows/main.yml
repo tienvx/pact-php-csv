@@ -30,6 +30,7 @@ jobs:
 
   test:
     runs-on: ${{ matrix.operating-system }}
+    timeout-minutes: 3
     needs:
       - php-cs
     strategy:
