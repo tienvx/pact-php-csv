@@ -3,11 +3,8 @@
 namespace Tienvx\PactPhpCsv\Driver;
 
 use PhpPact\Consumer\Driver\InteractionDriver;
-use PhpPact\Consumer\InteractionBuilder;
-use PhpPact\Consumer\Model\Interaction;
 use PhpPact\Standalone\MockService\MockServerConfigInterface;
 use Tienvx\PactPhpPlugin\Driver\UsingPluginTrait;
-use Tienvx\PactPhpPlugin\Model\PactPlugin;
 
 class CsvInteractionDriver extends InteractionDriver
 {
