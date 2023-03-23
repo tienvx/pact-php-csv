@@ -36,16 +36,14 @@ class PactVerifyTest extends TestCase
     public function testPactVerifyConsumer()
     {
         $config = new VerifierConfig();
-        $config
-            ->setProviderName('csvProvider')
-            ->setProviderVersion('1.0.0')
-            ->setProviderBranch('main')
+        $config->getProviderInfo()
+            ->setName('csvProvider')
             ->setHost('localhost')
-            ->setPort($this->port)
+            ->setPort($this->port);
+        $config->getProviderState()
             ->setStateChangeUrl(new Uri("http://localhost:{$this->port}/change-state"))
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
-            ->setPublishResults(false)
         ;
 
         $verifier = new Verifier($config);
