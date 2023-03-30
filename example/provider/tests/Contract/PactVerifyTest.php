@@ -46,6 +46,7 @@ class PactVerifyTest extends TestCase
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
         ;
+        // Note: use /path/to/vendor/bin/pact-plugins in your project
         PactPluginHelper::setPluginDir(__DIR__.'/../../../../bin/pact-plugins');
 
         $verifier = new Verifier($config);
