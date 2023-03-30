@@ -7,6 +7,7 @@ use PhpPact\Standalone\ProviderVerifier\Model\VerifierConfig;
 use PhpPact\Standalone\ProviderVerifier\Verifier;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
+use Tienvx\PactPhpPlugin\PactPluginHelper;
 
 class PactVerifyTest extends TestCase
 {
@@ -45,6 +46,8 @@ class PactVerifyTest extends TestCase
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
         ;
+        // Note: use /path/to/vendor/bin/pact-plugins in your project
+        PactPluginHelper::setPluginDir(__DIR__.'/../../../../bin/pact-plugins');
 
         $verifier = new Verifier($config);
         $verifier->addDirectory(__DIR__.'/../../../broker/pacts');
