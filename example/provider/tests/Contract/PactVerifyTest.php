@@ -46,6 +46,9 @@ class PactVerifyTest extends TestCase
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
         ;
+        if ($logLevel = \getenv('PACT_LOGLEVEL')) {
+            $config->setLogLevel($logLevel);
+        }
         // Note: use /path/to/vendor/bin/pact-plugins in your project
         PactPluginHelper::setPluginDir(__DIR__.'/../../../../bin/pact-plugins');
 
