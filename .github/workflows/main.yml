@@ -26,7 +26,7 @@ jobs:
         run: php-cs-fixer fix --diff --dry-run
 
       - name: Run PHPStan
-        run: phpstan analyse src tests example
+        run: phpstan
 
   test:
     runs-on: ${{ matrix.operating-system }}
