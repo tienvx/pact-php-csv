@@ -7,8 +7,7 @@ use PhpPact\Consumer\Model\ConsumerRequest;
 use PhpPact\Consumer\Model\ProviderResponse;
 use PhpPact\Standalone\MockService\MockServerConfig;
 use PHPUnit\Framework\TestCase;
-use Tienvx\PactPhpCsv\Driver\CsvInteractionDriver;
-use Tienvx\PactPhpPlugin\InteractionBuilder;
+use Tienvx\PactPhpCsv\Consumer\Factory\CsvInteractionBuilderFactory;
 
 class CsvHttpClientTest extends TestCase
 {
@@ -41,7 +40,7 @@ class CsvHttpClientTest extends TestCase
         if ($logLevel = \getenv('PACT_LOGLEVEL')) {
             $config->setLogLevel($logLevel);
         }
-        $builder = new InteractionBuilder(new CsvInteractionDriver($config));
+        $builder = CsvInteractionBuilderFactory::create($config);
         $builder
             ->given('report.csv file exist')
             ->uponReceiving('request for a report.csv')
