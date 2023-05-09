@@ -16,7 +16,7 @@ $app->post('/', function (Request $request, Response $response) {
     ;
 });
 
-$app->post('/change-state', function (Request $request, Response $response) {
+$app->post('/pact-change-state', function (Request $request, Response $response) {
     $response->getBody()->write('Created csv file');
 
     return $response;
