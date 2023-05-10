@@ -19,6 +19,9 @@ class CsvHttpClient
         ]);
     }
 
+    /**
+     * @return array<string>
+     */
     public function getCsvFile(): array
     {
         $response = $this->client->request(
