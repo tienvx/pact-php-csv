@@ -11,7 +11,7 @@ use Tienvx\PactPhpCsv\Consumer\Factory\CsvInteractionBuilderFactory;
 
 class CsvHttpClientTest extends TestCase
 {
-    public function testGetCsvFile()
+    public function testGetCsvFile(): void
     {
         $request = new ConsumerRequest();
         $request
@@ -53,5 +53,6 @@ class CsvHttpClientTest extends TestCase
 
         $this->assertTrue($builder->verify());
         $this->assertCount(3, $columns);
+        $this->assertSame(['Name', '100', '2000-01-01'], $columns);
     }
 }
