@@ -33,6 +33,7 @@ class CsvHttpClientTest extends TestCase
         ;
 
         $config = new MockServerConfig();
+        $config->setHost('127.0.0.1');
         $config->setConsumer('csvConsumer');
         $config->setProvider('csvProvider');
         $config->setPactSpecificationVersion('4.0.0');
