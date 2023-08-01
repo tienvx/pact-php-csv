@@ -10,9 +10,4 @@ class CsvPactDriver extends AbstractPluginPactDriver
     {
         return 'csv';
     }
-
-    protected function getPluginDir(): string
-    {
-        return __DIR__.'/../../../../bin/pact-plugins';
-    }
 }
